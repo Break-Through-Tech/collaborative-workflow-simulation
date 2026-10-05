@@ -28,4 +28,10 @@ def calculate_recall(y_true, y_pred):
     return true_positives / actual_positives
 
 
-# TODO: Replace this comment with your calculate_f1 function.
+def calculate_specificity(y_true, y_pred):
+    """Return the share of actual negatives the model predicted correctly."""
+    true_negatives = sum(1 for t, p in zip(y_true, y_pred) if t == 0 and p == 0)
+    actual_negatives = sum(1 for t in y_true if t == 0)
+    if actual_negatives == 0:
+        return 0.0
+    return true_negatives / actual_negatives
